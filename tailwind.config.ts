@@ -81,11 +81,40 @@ export default {
           busy: "rgb(239 68 68)",
           offline: "rgb(156 163 175)",
         },
+        tier1: {
+          primary: "hsl(var(--tier1-primary) / <alpha-value>)",
+          foreground: "hsl(var(--tier1-primary-foreground) / <alpha-value>)",
+          "gradient-from": "hsl(var(--tier1-gradient-from) / <alpha-value>)",
+          "gradient-to": "hsl(var(--tier1-gradient-to) / <alpha-value>)",
+          accent: "hsl(var(--tier1-accent) / <alpha-value>)",
+        },
+        tier2: {
+          primary: "hsl(var(--tier2-primary) / <alpha-value>)",
+          foreground: "hsl(var(--tier2-primary-foreground) / <alpha-value>)",
+          "gradient-from": "hsl(var(--tier2-gradient-from) / <alpha-value>)",
+          "gradient-to": "hsl(var(--tier2-gradient-to) / <alpha-value>)",
+          accent: "hsl(var(--tier2-accent) / <alpha-value>)",
+        },
+        tier3: {
+          primary: "hsl(var(--tier3-primary) / <alpha-value>)",
+          foreground: "hsl(var(--tier3-primary-foreground) / <alpha-value>)",
+          "gradient-from": "hsl(var(--tier3-gradient-from) / <alpha-value>)",
+          "gradient-to": "hsl(var(--tier3-gradient-to) / <alpha-value>)",
+          accent: "hsl(var(--tier3-accent) / <alpha-value>)",
+        },
+        tier4: {
+          primary: "hsl(var(--tier4-primary) / <alpha-value>)",
+          foreground: "hsl(var(--tier4-primary-foreground) / <alpha-value>)",
+          "gradient-from": "hsl(var(--tier4-gradient-from) / <alpha-value>)",
+          "gradient-to": "hsl(var(--tier4-gradient-to) / <alpha-value>)",
+          accent: "hsl(var(--tier4-accent) / <alpha-value>)",
+        },
       },
       fontFamily: {
         sans: ["var(--font-sans)"],
         serif: ["var(--font-serif)"],
         mono: ["var(--font-mono)"],
+        display: ["var(--font-display)"],
       },
       keyframes: {
         "accordion-down": {

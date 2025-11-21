@@ -43,9 +43,39 @@
   --chart-3: 45 93% 47%;
   --chart-4: 142 71% 45%;
   --chart-5: 340 82% 52%;
-  --font-sans: Open Sans, sans-serif;
+  --font-sans: Inter, sans-serif;
   --font-serif: Georgia, serif;
   --font-mono: Menlo, monospace;
+  --font-display: Poppins, sans-serif;
+  
+  /* Tier-specific colors - Light Mode */
+  /* Tier 1 (₹49) - Silver/Gray */
+  --tier1-primary: 210 10% 60%;
+  --tier1-primary-foreground: 0 0% 100%;
+  --tier1-gradient-from: 210 15% 92%;
+  --tier1-gradient-to: 210 12% 85%;
+  --tier1-accent: 210 12% 88%;
+  
+  /* Tier 2 (₹99) - Blue/Teal */
+  --tier2-primary: 195 85% 55%;
+  --tier2-primary-foreground: 0 0% 100%;
+  --tier2-gradient-from: 195 90% 92%;
+  --tier2-gradient-to: 195 75% 82%;
+  --tier2-accent: 195 80% 88%;
+  
+  /* Tier 3 (₹199) - Purple/Violet */
+  --tier3-primary: 270 75% 65%;
+  --tier3-primary-foreground: 0 0% 100%;
+  --tier3-gradient-from: 270 80% 92%;
+  --tier3-gradient-to: 270 70% 85%;
+  --tier3-accent: 270 70% 90%;
+  
+  /* Tier 4 (₹399) - Gold/Premium */
+  --tier4-primary: 45 95% 55%;
+  --tier4-primary-foreground: 0 0% 10%;
+  --tier4-gradient-from: 45 100% 92%;
+  --tier4-gradient-to: 45 90% 82%;
+  --tier4-accent: 45 85% 88%;
   --radius: .5rem;
   --shadow-2xs: 0px 2px 0px 0px hsl(0 0% 0% / 0.00);
   --shadow-xs: 0px 2px 0px 0px hsl(0 0% 0% / 0.00);
@@ -127,6 +157,36 @@
   --chart-3: 45 93% 65%;
   --chart-4: 142 71% 65%;
   --chart-5: 340 82% 65%;
+  
+  /* Tier-specific colors - Dark Mode */
+  /* Tier 1 (₹49) - Silver/Gray */
+  --tier1-primary: 210 12% 65%;
+  --tier1-primary-foreground: 0 0% 10%;
+  --tier1-gradient-from: 210 10% 18%;
+  --tier1-gradient-to: 210 12% 14%;
+  --tier1-accent: 210 12% 20%;
+  
+  /* Tier 2 (₹99) - Blue/Teal */
+  --tier2-primary: 195 85% 60%;
+  --tier2-primary-foreground: 0 0% 10%;
+  --tier2-gradient-from: 195 45% 18%;
+  --tier2-gradient-to: 195 40% 14%;
+  --tier2-accent: 195 50% 20%;
+  
+  /* Tier 3 (₹199) - Purple/Violet */
+  --tier3-primary: 270 75% 70%;
+  --tier3-primary-foreground: 0 0% 10%;
+  --tier3-gradient-from: 270 40% 18%;
+  --tier3-gradient-to: 270 35% 14%;
+  --tier3-accent: 270 45% 20%;
+  
+  /* Tier 4 (₹399) - Gold/Premium */
+  --tier4-primary: 45 95% 60%;
+  --tier4-primary-foreground: 0 0% 10%;
+  --tier4-gradient-from: 45 50% 18%;
+  --tier4-gradient-to: 45 45% 14%;
+  --tier4-accent: 45 55% 22%;
+  
   --shadow-2xs: 0px 2px 0px 0px hsl(0 0% 0% / 0.00);
   --shadow-xs: 0px 2px 0px 0px hsl(0 0% 0% / 0.00);
   --shadow-sm: 0px 2px 0px 0px hsl(0 0% 0% / 0.00), 0px 1px 2px -1px hsl(0 0% 0% / 0.00);
