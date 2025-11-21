@@ -56,140 +56,130 @@ export default function PaymentPlanPage({ planId }: PaymentPlanPageProps) {
   const tierStyles = getTierClasses(plan.tier);
 
   return (
-    <div className="h-screen bg-background flex flex-col overflow-hidden">
-      {/* Compact Header */}
-      <header className="border-b border-border/20 bg-card/80 py-2 px-3 flex-shrink-0">
-        <div className="flex items-center justify-center gap-2">
-          <img 
-            src={logoImage} 
-            alt="Biswa Tech Solutions" 
-            className="h-6 w-auto"
-            data-testid="logo-image"
-          />
-          <div className="text-center">
-            <h1 className="text-xs font-bold text-foreground leading-none">
-              Biswa Tech
-            </h1>
-            <p className="text-xs text-muted-foreground leading-none">Automation</p>
+    <div className={`h-screen bg-gradient-to-br ${tierStyles.light} to-background flex flex-col overflow-hidden`}>
+      {/* Full Screen Payment Card */}
+      <div className="flex-1 flex flex-col rounded-none overflow-hidden border-none shadow-none bg-card">
+        {/* Header Section - Integrated */}
+        <div className={`px-4 py-3 bg-gradient-to-br ${tierStyles.light} to-card text-center flex-shrink-0`}>
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <img 
+              src={logoImage} 
+              alt="Biswa Tech Solutions" 
+              className="h-6 w-auto"
+              data-testid="logo-image"
+            />
+            <div className="text-center">
+              <h1 className="text-sm font-bold text-foreground leading-none">
+                Biswa Tech Solutions
+              </h1>
+              <p className="text-xs text-muted-foreground leading-none">Telegram Automation</p>
+            </div>
+          </div>
+
+          {/* Tier Badge */}
+          <div className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-semibold text-xs ${tierStyles.primary} mb-2`}>
+            <span className="h-1.5 w-1.5 rounded-full bg-current"></span>
+            {plan.badge}
+          </div>
+
+          {/* Plan Info */}
+          <h2 className="text-2xl font-bold font-display text-foreground leading-tight mb-1" data-testid="text-plan-name">
+            {plan.name}
+          </h2>
+          <div className="space-y-0.5">
+            <div className="text-4xl font-bold font-display text-foreground" data-testid="text-price">
+              {plan.currency}{plan.price}
+            </div>
+            <p className="text-sm text-muted-foreground">One-time payment</p>
           </div>
         </div>
-      </header>
 
-      {/* Main Content - No Scroll */}
-      <main className="flex-1 px-3 py-3 flex items-center justify-center overflow-hidden">
-        <div className="w-full max-w-sm h-full flex flex-col">
-          {/* Payment Card - Compact */}
-          <div className="rounded-xl overflow-hidden shadow-lg border border-border/30 bg-card flex flex-col h-full">
-            {/* Color Bar */}
-            <div className={`h-1.5 ${tierStyles.primary}`}></div>
-
-            {/* Header Section - Minimal */}
-            <div className={`px-4 py-2.5 bg-gradient-to-br ${tierStyles.light} to-card text-center`}>
-              <div className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-semibold text-xs ${tierStyles.primary} mb-1.5`}>
-                <span className="h-1.5 w-1.5 rounded-full bg-current"></span>
-                {plan.badge}
-              </div>
-              <h2 className="text-lg font-bold font-display text-foreground leading-tight" data-testid="text-plan-name">
-                {plan.name}
-              </h2>
-              <div className="space-y-0.5 mt-1.5">
-                <div className="text-3xl font-bold font-display text-foreground" data-testid="text-price">
-                  {plan.currency}{plan.price}
-                </div>
-                <p className="text-xs text-muted-foreground">One-time payment</p>
-              </div>
-            </div>
-
-            {/* Features Section - Compact */}
-            <div className="px-4 py-2 flex-shrink-0">
-              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1.5">Includes</p>
-              <div className="space-y-1">
-                {plan.features.slice(0, 2).map((feature, index) => (
-                  <div 
-                    key={index} 
-                    className="flex items-center gap-2"
-                    data-testid={`feature-item-${index}`}
-                  >
-                    <CheckCircle2 className={`h-3.5 w-3.5 flex-shrink-0 ${tierStyles.text}`} />
-                    <span className="text-xs text-card-foreground line-clamp-1">
-                      {feature}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Payment Section - Compact */}
-            <div className="px-4 py-2 flex-1 flex flex-col gap-1.5 overflow-hidden">
-              {/* QR Code - Small */}
-              <div className="bg-muted/40 rounded-lg p-2 text-center">
-                <p className="text-xs font-medium text-foreground mb-1">Scan to Pay</p>
-                <div className="flex justify-center">
-                  <div className="bg-white p-1.5 rounded shadow-sm">
-                    <QRCodeSVG 
-                      value={upiString} 
-                      size={100}
-                      level="H"
-                      includeMargin={false}
-                      data-testid="qr-code"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* OR Divider */}
-              <div className="flex items-center gap-2">
-                <div className="flex-1 h-px bg-border/30"></div>
-                <span className="text-xs text-muted-foreground font-medium">OR</span>
-                <div className="flex-1 h-px bg-border/30"></div>
-              </div>
-
-              {/* Payment Button - Full Width */}
-              <button
-                onClick={handlePayment}
-                className={`w-full ${tierStyles.primary} rounded-lg py-2.5 px-3 font-semibold text-sm flex items-center justify-center gap-2 shadow-lg hover-elevate active-elevate-2 transition-all flex-shrink-0`}
-                data-testid="button-pay-upi"
+        {/* Features Section */}
+        <div className="px-4 py-2.5 flex-shrink-0">
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">What You Get</p>
+          <div className="space-y-1.5">
+            {plan.features.slice(0, 3).map((feature, index) => (
+              <div 
+                key={index} 
+                className="flex items-center gap-2"
+                data-testid={`feature-item-${index}`}
               >
-                <Smartphone className="h-4 w-4" />
-                <span>Pay {plan.currency}{plan.price}</span>
-              </button>
-
-              <p className="text-xs text-center text-muted-foreground leading-snug">
-                Works with all UPI apps
-              </p>
-            </div>
-
-            {/* Security Footer */}
-            <div className="px-4 py-2 bg-muted/20 border-t border-border/30 flex-shrink-0">
-              <div className="grid grid-cols-3 gap-2 text-center">
-                <div className="space-y-0.5">
-                  <Lock className="h-3.5 w-3.5 text-green-600 dark:text-green-400 mx-auto" />
-                  <p className="text-xs font-medium text-foreground">Secure</p>
-                </div>
-                <div className="space-y-0.5">
-                  <Zap className="h-3.5 w-3.5 text-orange-600 dark:text-orange-400 mx-auto" />
-                  <p className="text-xs font-medium text-foreground">Instant</p>
-                </div>
-                <div className="space-y-0.5">
-                  <svg className="h-3.5 w-3.5 text-blue-600 dark:text-blue-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                  <p className="text-xs font-medium text-foreground">24/7</p>
-                </div>
+                <CheckCircle2 className={`h-4 w-4 flex-shrink-0 ${tierStyles.text}`} />
+                <span className="text-sm text-card-foreground line-clamp-1">
+                  {feature}
+                </span>
               </div>
-            </div>
+            ))}
           </div>
         </div>
-      </main>
 
-      {/* Minimal Footer */}
-      <footer className="border-t border-border/20 bg-card/80 py-1.5 px-3 flex-shrink-0">
-        <div className="flex items-center justify-center gap-1 text-xs text-muted-foreground">
-          <span>Biswa Tech Solutions</span>
-          <span>•</span>
-          <span>Secure Payment</span>
+        {/* Divider */}
+        <div className="h-px bg-gradient-to-r from-transparent via-border/30 to-transparent flex-shrink-0"></div>
+
+        {/* Payment Section - Flex to Fill */}
+        <div className="flex-1 px-4 py-3 flex flex-col gap-2 overflow-hidden">
+          {/* QR Code */}
+          <div className="bg-muted/40 rounded-lg p-3 text-center flex flex-col items-center justify-center">
+            <p className="text-xs font-medium text-foreground mb-2">Scan to Pay</p>
+            <div className="bg-white p-2 rounded shadow-sm">
+              <QRCodeSVG 
+                value={upiString} 
+                size={120}
+                level="H"
+                includeMargin={false}
+                data-testid="qr-code"
+              />
+            </div>
+            <p className="text-xs text-muted-foreground mt-2">
+              UPI ID: <span className="font-medium text-foreground">{UPI_ID}</span>
+            </p>
+          </div>
+
+          {/* OR Divider */}
+          <div className="flex items-center gap-2">
+            <div className="flex-1 h-px bg-border/30"></div>
+            <span className="text-xs text-muted-foreground font-medium">OR</span>
+            <div className="flex-1 h-px bg-border/30"></div>
+          </div>
+
+          {/* Payment Button */}
+          <button
+            onClick={handlePayment}
+            className={`w-full ${tierStyles.primary} rounded-lg py-3 px-4 font-semibold text-sm flex items-center justify-center gap-2 shadow-lg hover-elevate active-elevate-2 transition-all`}
+            data-testid="button-pay-upi"
+          >
+            <Smartphone className="h-5 w-5" />
+            <span>Pay {plan.currency}{plan.price} via UPI</span>
+          </button>
+
+          <p className="text-xs text-center text-muted-foreground">
+            Works with Google Pay, PhonePe, BHIM, Paytm
+          </p>
         </div>
-      </footer>
+
+        {/* Security Footer */}
+        <div className={`px-4 py-2.5 bg-muted/30 border-t border-border/30 flex-shrink-0`}>
+          <div className="grid grid-cols-3 gap-2 text-center">
+            <div className="space-y-1">
+              <Lock className="h-4 w-4 text-green-600 dark:text-green-400 mx-auto" />
+              <p className="text-xs font-medium text-foreground">Secure</p>
+            </div>
+            <div className="space-y-1">
+              <Zap className="h-4 w-4 text-orange-600 dark:text-orange-400 mx-auto" />
+              <p className="text-xs font-medium text-foreground">Instant</p>
+            </div>
+            <div className="space-y-1">
+              <svg className="h-4 w-4 text-blue-600 dark:text-blue-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              <p className="text-xs font-medium text-foreground">24/7</p>
+            </div>
+          </div>
+          <p className="text-xs text-center text-muted-foreground mt-2">
+            Powered by Biswa Tech Solutions
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
