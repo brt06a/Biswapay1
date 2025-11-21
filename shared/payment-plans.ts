@@ -13,7 +13,7 @@ export const paymentPlans: PaymentPlan[] = [
   {
     id: "basic",
     tier: 1,
-    name: "Basic Plan",
+    name: "Mater9692 Pro",
     badge: "STARTER",
     price: 49,
     currency: "₹",
@@ -28,7 +28,7 @@ export const paymentPlans: PaymentPlan[] = [
   {
     id: "standard",
     tier: 2,
-    name: "Standard Plan",
+    name: "Hiding 8455",
     badge: "POPULAR",
     price: 99,
     currency: "₹",
@@ -45,7 +45,7 @@ export const paymentPlans: PaymentPlan[] = [
   {
     id: "pro",
     tier: 3,
-    name: "Pro Plan",
+    name: "Create9938",
     badge: "PRO",
     price: 199,
     currency: "₹",
@@ -64,7 +64,7 @@ export const paymentPlans: PaymentPlan[] = [
   {
     id: "premium",
     tier: 4,
-    name: "Premium Plan",
+    name: "Life 9999",
     badge: "ENTERPRISE",
     price: 399,
     currency: "₹",
