@@ -9,10 +9,30 @@ interface PaymentPlanPageProps {
 
 function getTierClasses(tier: number) {
   const tierClasses = {
-    1: { primary: "bg-tier1-primary text-tier1-foreground", text: "text-tier1-primary" },
-    2: { primary: "bg-tier2-primary text-tier2-foreground", text: "text-tier2-primary" },
-    3: { primary: "bg-tier3-primary text-tier3-foreground", text: "text-tier3-primary" },
-    4: { primary: "bg-tier4-primary text-tier4-foreground", text: "text-tier4-primary" }
+    1: { 
+      primary: "bg-tier1-primary text-tier1-foreground", 
+      text: "text-tier1-primary",
+      light: "bg-tier1-gradient-from/20 dark:bg-tier1-gradient-from/10 border-tier1-primary/30",
+      accent: "text-tier1-primary"
+    },
+    2: { 
+      primary: "bg-tier2-primary text-tier2-foreground", 
+      text: "text-tier2-primary",
+      light: "bg-tier2-gradient-from/20 dark:bg-tier2-gradient-from/10 border-tier2-primary/30",
+      accent: "text-tier2-primary"
+    },
+    3: { 
+      primary: "bg-tier3-primary text-tier3-foreground", 
+      text: "text-tier3-primary",
+      light: "bg-tier3-gradient-from/20 dark:bg-tier3-gradient-from/10 border-tier3-primary/30",
+      accent: "text-tier3-primary"
+    },
+    4: { 
+      primary: "bg-tier4-primary text-tier4-foreground", 
+      text: "text-tier4-primary",
+      light: "bg-tier4-gradient-from/20 dark:bg-tier4-gradient-from/10 border-tier4-primary/30",
+      accent: "text-tier4-primary"
+    }
   };
   return tierClasses[tier as keyof typeof tierClasses];
 }
@@ -81,14 +101,14 @@ export default function PaymentPlanPage({ planId }: PaymentPlanPageProps) {
             <p className="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-3 uppercase tracking-wide">Select Payment Method</p>
 
             {/* UPI Tab */}
-            <div className={`border-2 rounded-lg p-4 mb-3 cursor-pointer transition-all ${tierStyles.primary} bg-opacity-5`}>
-              <div className="flex items-start gap-3">
-                {/* QR Code */}
+            <div className={`border-2 rounded-lg p-4 mb-3 cursor-pointer transition-all ${tierStyles.light} border-tier1-primary/30 dark:border-tier1-primary/20 bg-gradient-to-br from-transparent to-transparent`}>
+              <div className="flex flex-col items-center gap-3">
+                {/* QR Code - Bigger */}
                 <div className="flex-shrink-0">
-                  <div className="bg-white dark:bg-neutral-800 p-1.5 rounded border border-gray-200 dark:border-neutral-700">
+                  <div className={`bg-white dark:bg-neutral-800 p-3 rounded-lg border-2 ${tierStyles.text} shadow-md`}>
                     <QRCodeSVG 
                       value={upiString} 
-                      size={80}
+                      size={130}
                       level="H"
                       includeMargin={false}
                       data-testid="qr-code"
@@ -97,16 +117,16 @@ export default function PaymentPlanPage({ planId }: PaymentPlanPageProps) {
                 </div>
 
                 {/* UPI Details */}
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Smartphone className="h-4 w-4 text-gray-700 dark:text-gray-300" />
-                    <span className="font-semibold text-gray-900 dark:text-white text-sm">UPI</span>
+                <div className="w-full text-center">
+                  <div className="flex items-center justify-center gap-2 mb-2">
+                    <Smartphone className={`h-4 w-4 ${tierStyles.accent}`} />
+                    <span className={`font-semibold text-gray-900 dark:text-white text-sm ${tierStyles.accent}`}>UPI Payment</span>
                   </div>
-                  <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">
-                    Pay instantly using Google Pay, PhonePe, BHIM or any UPI app
+                  <p className="text-xs text-gray-600 dark:text-gray-400 mb-3">
+                    Scan & pay instantly with Google Pay, PhonePe, BHIM or any UPI app
                   </p>
-                  <div className="bg-white dark:bg-neutral-800 rounded px-2 py-1 inline-block">
-                    <p className="text-xs font-mono text-gray-900 dark:text-white">{UPI_ID}</p>
+                  <div className={`${tierStyles.light} rounded-lg px-3 py-1.5 inline-block border border-current/20`}>
+                    <p className={`text-xs font-semibold ${tierStyles.accent}`}>{UPI_ID}</p>
                   </div>
                 </div>
               </div>
@@ -135,13 +155,13 @@ export default function PaymentPlanPage({ planId }: PaymentPlanPageProps) {
             </p>
           </div>
 
-          {/* Features - Razorpay Style */}
-          <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-900/30 rounded-lg p-3 mb-4">
-            <p className="text-xs font-semibold text-blue-900 dark:text-blue-300 mb-2 uppercase">What You Get</p>
+          {/* Features - Tier Colored */}
+          <div className={`${tierStyles.light} border-2 border-current/30 rounded-lg p-3 mb-4`}>
+            <p className={`text-xs font-semibold ${tierStyles.accent} mb-2 uppercase`}>What You Get</p>
             <div className="space-y-1.5">
               {plan.features.slice(0, 3).map((feature, index) => (
                 <div key={index} className="flex items-start gap-2" data-testid={`feature-item-${index}`}>
-                  <CheckCircle2 className="h-3.5 w-3.5 flex-shrink-0 mt-0.5 text-blue-600 dark:text-blue-400" />
+                  <CheckCircle2 className={`h-3.5 w-3.5 flex-shrink-0 mt-0.5 ${tierStyles.accent}`} />
                   <span className="text-xs text-gray-700 dark:text-gray-300">{feature}</span>
                 </div>
               ))}
