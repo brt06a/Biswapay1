@@ -57,23 +57,16 @@ export default function PaymentSuccess() {
             </div>
 
             <div className="space-y-3">
-              <Button
-                size="lg"
-                className="w-full"
-                onClick={() => setLocation("/dashboard")}
-                data-testid="button-view-dashboard"
-              >
-                View Dashboard
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="w-full"
-                onClick={() => setLocation("/plan/basic")}
-                data-testid="button-view-plans"
-              >
-                View All Plans
-              </Button>
+              <Link href="/dashboard">
+                <Button size="lg" className="w-full" data-testid="button-view-dashboard">
+                  View Dashboard
+                </Button>
+              </Link>
+              <Link href="/plan/basic">
+                <Button size="lg" variant="outline" className="w-full" data-testid="button-view-plans">
+                  View All Plans
+                </Button>
+              </Link>
             </div>
 
             <div className="text-center">
