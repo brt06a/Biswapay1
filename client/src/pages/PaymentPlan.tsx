@@ -79,26 +79,6 @@ export default function PaymentPlanPage({ planId }: PaymentPlanPageProps) {
         </div>
       </header>
 
-      {/* Navigation - Plan Switcher */}
-      <nav className="border-b border-border bg-background px-3 py-2 flex-shrink-0">
-        <div className="flex items-center justify-center gap-1.5 overflow-x-auto">
-          {paymentPlans.map((p) => (
-            <a
-              key={p.id}
-              href={p.path}
-              className={`px-2.5 py-1 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
-                p.id === planId
-                  ? `${tierStyles.primary} shadow-md`
-                  : "bg-muted text-muted-foreground hover:bg-accent"
-              }`}
-              data-testid={`nav-plan-${p.id}`}
-            >
-              {p.currency}{p.price}
-            </a>
-          ))}
-        </div>
-      </nav>
-
       {/* Scrollable Content Area */}
       <main className="flex-1 overflow-y-auto px-3 py-3">
         <div className="max-w-sm mx-auto">
