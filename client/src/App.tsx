@@ -1,88 +1,48 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "wouter";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { CheckCircle2 } from "lucide-react";
-import { Link } from "wouter";
-import logoImage from "@assets/generated_images/biswa_tech_solutions_logo.png";
+import { Switch, Route, Redirect } from "wouter";
+import { queryClient } from "./lib/queryClient";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "@/components/ui/toaster";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import PaymentPlanPage from "@/pages/PaymentPlan";
+import NotFound from "@/pages/not-found";
 
-export default function PaymentSuccess() {
-  const [, setLocation] = useLocation();
-  const [email, setEmail] = useState("");
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const userEmail = params.get("email") || "";
-    const planId = params.get("plan") || "";
-    const amount = params.get("amount") || "";
-
-    setEmail(userEmail);
-
-    if (userEmail && planId && amount) {
-      localStorage.setItem("userEmail", userEmail);
-      
-      // Create subscription record
-      fetch("/api/subscriptions", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: userEmail,
-          planId,
-          amount: parseInt(amount),
-        }),
-      }).catch(console.error);
-    }
-  }, []);
-
+function Router() {
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center">
-      <div className="w-full max-w-md mx-auto px-4">
-        <Card className="border-2 border-green-200 bg-green-50 dark:bg-green-950/20">
-          <CardHeader className="text-center space-y-4">
-            <div className="flex justify-center">
-              <div className="rounded-full bg-green-100 dark:bg-green-900 p-4">
-                <CheckCircle2 className="h-12 w-12 text-green-600 dark:text-green-400" />
-              </div>
-            </div>
-            <CardTitle className="text-2xl">Payment Successful!</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="bg-background rounded-lg p-4 text-center space-y-2">
-              <p className="text-sm text-muted-foreground">Your subscription is now active</p>
-              {email && (
-                <p className="text-sm font-semibold" data-testid="text-confirmation-email">
-                  Confirmation sent to {email}
-                </p>
-              )}
-            </div>
-
-            <div className="space-y-3">
-              <Button
-                size="lg"
-                className="w-full"
-                onClick={() => setLocation("/dashboard")}
-                data-testid="button-view-dashboard"
-              >
-                View Dashboard
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="w-full"
-                onClick={() => setLocation("/plan/basic")}
-                data-testid="button-view-plans"
-              >
-                View All Plans
-              </Button>
-            </div>
-
-            <div className="text-center">
-              <img src={logoImage} alt="Biswa Tech Solutions" className="h-8 w-auto mx-auto" />
-              <p className="text-xs text-muted-foreground mt-2">Thank you for your subscription!</p>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    </div>
+    <Switch>
+      {/* Redirect root to basic plan */}
+      <Route path="/">
+        <Redirect to="/plan/basic" />
+      </Route>
+      
+      {/* Payment Plan Routes */}
+      <Route path="/plan/basic">
+        <PaymentPlanPage planId="basic" />
+      </Route>
+      <Route path="/plan/standard">
+        <PaymentPlanPage planId="standard" />
+      </Route>
+      <Route path="/plan/pro">
+        <PaymentPlanPage planId="pro" />
+      </Route>
+      <Route path="/plan/premium">
+        <PaymentPlanPage planId="premium" />
+      </Route>
+      
+      {/* Fallback to 404 */}
+      <Route component={NotFound} />
+    </Switch>
   );
 }
+
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Router />
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+}
+
+export default App;
