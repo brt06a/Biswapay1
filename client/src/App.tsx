@@ -15,16 +15,16 @@ function Router() {
       </Route>
       
       {/* Payment Plan Routes with custom paths */}
-      <Route path="/plan/mater9692/:sessionId?">
+      <Route path="/plan/mater9692">
         <PaymentPlanPage planId="basic" />
       </Route>
-      <Route path="/plan/hiding8455/:sessionId?">
+      <Route path="/plan/hiding8455">
         <PaymentPlanPage planId="standard" />
       </Route>
-      <Route path="/plan/create9938/:sessionId?">
+      <Route path="/plan/create9938">
         <PaymentPlanPage planId="pro" />
       </Route>
-      <Route path="/plan/life9999/:sessionId?">
+      <Route path="/plan/life9999">
         <PaymentPlanPage planId="premium" />
       </Route>
       
