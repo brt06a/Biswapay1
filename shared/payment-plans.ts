@@ -64,7 +64,7 @@ export const paymentPlans: PaymentPlan[] = [
   {
     id: "premium",
     tier: 4,
-    name: "Life 9999",
+    name: "399",
     badge: "ENTERPRISE",
     price: 399,
     currency: "₹",
