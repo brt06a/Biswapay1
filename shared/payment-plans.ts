@@ -17,7 +17,7 @@ export const paymentPlans: PaymentPlan[] = [
     badge: "STARTER",
     price: 49,
     currency: "₹",
-    path: "/plan/basic",
+    path: "/plan/mater9692",
     features: [
       "Access to basic automation features",
       "Up to 100 messages per day",
@@ -32,7 +32,7 @@ export const paymentPlans: PaymentPlan[] = [
     badge: "POPULAR",
     price: 99,
     currency: "₹",
-    path: "/plan/standard",
+    path: "/plan/hiding8455",
     features: [
       "All Basic features included",
       "Up to 500 messages per day",
@@ -49,7 +49,7 @@ export const paymentPlans: PaymentPlan[] = [
     badge: "PRO",
     price: 199,
     currency: "₹",
-    path: "/plan/pro",
+    path: "/plan/create9938",
     features: [
       "All Standard features included",
       "Unlimited messages",
@@ -68,7 +68,7 @@ export const paymentPlans: PaymentPlan[] = [
     badge: "ENTERPRISE",
     price: 399,
     currency: "₹",
-    path: "/plan/premium",
+    path: "/plan/life9999",
     features: [
       "All Pro features included",
       "Dedicated account manager",
