@@ -1,10 +1,16 @@
 import { QRCodeSVG } from "qrcode.react";
 import { CheckCircle2, Smartphone, Lock, ArrowRight } from "lucide-react";
+import { useEffect } from "react";
+import { useLocation } from "wouter";
 import { paymentPlans, generateUPIString, UPI_ID } from "@shared/payment-plans";
 import logoImage from "@assets/generated_images/biswa_tech_solutions_logo.png";
 
 interface PaymentPlanPageProps {
   planId: string;
+}
+
+function generateSessionId(): string {
+  return Math.random().toString(36).substring(2) + Date.now().toString(36);
 }
 
 function getGradientByTier(tier: number): string {
@@ -58,7 +64,20 @@ function getSecurityByTier(tier: number): string {
 }
 
 export default function PaymentPlanPage({ planId }: PaymentPlanPageProps) {
+  const [location, setLocation] = useLocation();
   const plan = paymentPlans.find(p => p.id === planId);
+
+  useEffect(() => {
+    // Generate unique session ID on each page load
+    const sessionId = generateSessionId();
+    const basePath = location.split("/").slice(0, 3).join("/"); // /plan/mater9692
+    const newPath = `${basePath}/${sessionId}`;
+    
+    // Update URL with session ID
+    if (!location.includes(sessionId)) {
+      setLocation(newPath);
+    }
+  }, []);
 
   if (!plan) {
     return <div className="h-screen flex items-center justify-center"><p>Plan not found</p></div>;
