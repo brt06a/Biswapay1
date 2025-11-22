@@ -3,7 +3,7 @@ import { CheckCircle2, Smartphone, Lock, ArrowRight } from "lucide-react";
 import { useEffect } from "react";
 import { useLocation } from "wouter";
 import { paymentPlans, generateUPIString, UPI_ID } from "@shared/payment-plans";
-import logoImage from "@assets/generated_images/biswa_tech_solutions_logo.png";
+import logoImage from "@assets/Round Photo_Nov122025_183837_1762953059438_1763803696843.png";
 
 interface PaymentPlanPageProps {
   planId: string;
@@ -119,8 +119,8 @@ export default function PaymentPlanPage({ planId }: PaymentPlanPageProps) {
       {/* Header */}
       <header className="bg-white/80 dark:bg-neutral-950/80 backdrop-blur-md border-b border-gray-200 dark:border-neutral-800 py-3 px-4">
         <div className="max-w-lg mx-auto flex items-center gap-2">
-          <img src={logoImage} alt="Biswa Tech" className="h-5 w-auto" data-testid="logo-image" />
-          <span className="text-sm font-semibold text-gray-900 dark:text-white">Biswa Tech</span>
+          <img src={logoImage} alt="PromotionX" className="h-8 w-8 rounded-full" data-testid="logo-image" />
+          <span className="text-sm font-semibold text-gray-900 dark:text-white">PromotionX</span>
         </div>
       </header>
 
