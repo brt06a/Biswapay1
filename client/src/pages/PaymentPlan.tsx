@@ -1,10 +1,32 @@
 import { QRCodeSVG } from "qrcode.react";
 import { CheckCircle2, Smartphone, Lock, ArrowRight } from "lucide-react";
+import { useEffect } from "react";
+import { useLocation } from "wouter";
 import { paymentPlans, generateUPIString, UPI_ID } from "@shared/payment-plans";
 import logoImage from "@assets/generated_images/biswa_tech_solutions_logo.png";
 
 interface PaymentPlanPageProps {
   planId: string;
+}
+
+// Session utilities
+function generateSessionId(): string {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+  for (let i = 0; i < 16; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+function getOrCreateSession(planId: string): string {
+  const storageKey = `session_${planId}`;
+  let sessionId = sessionStorage.getItem(storageKey);
+  if (!sessionId) {
+    sessionId = generateSessionId();
+    sessionStorage.setItem(storageKey, sessionId);
+  }
+  return sessionId;
 }
 
 function getGradientByTier(tier: number): string {
@@ -58,7 +80,25 @@ function getSecurityByTier(tier: number): string {
 }
 
 export default function PaymentPlanPage({ planId }: PaymentPlanPageProps) {
+  const [location, setLocation] = useLocation();
   const plan = paymentPlans.find(p => p.id === planId);
+
+  useEffect(() => {
+    if (!plan) return;
+
+    // Get or create session ID
+    const sessionId = getOrCreateSession(planId);
+    
+    // Get current URL params
+    const url = new URL(window.location.href);
+    const currentSession = url.searchParams.get('session');
+    
+    // Update URL with session ID if not present
+    if (currentSession !== sessionId) {
+      const pathOnly = location.split('?')[0]; // Remove existing params
+      setLocation(`${pathOnly}?session=${sessionId}`);
+    }
+  }, []);
 
   if (!plan) {
     return <div className="h-screen flex items-center justify-center"><p>Plan not found</p></div>;
