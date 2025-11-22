@@ -1,5 +1,6 @@
-import { CheckCircle2, Zap, BarChart3, Lock, MessageSquare, Users, ArrowRight, Sparkles, Rocket } from "lucide-react";
+import { CheckCircle2, Zap, BarChart3, Lock, MessageSquare, Users, ArrowRight, Sparkles, Rocket, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 import logoImage from "@assets/Round Photo_Nov122025_183837_1762953059438_1763803696843.png";
 
 export default function HomePage() {
@@ -385,8 +386,51 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/10 px-4 py-12 text-center text-gray-500">
-        <p>&copy; 2025 PromotionX. All rights reserved.</p>
+      <footer className="border-t border-white/10 px-4 py-12">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8 mb-12">
+            <div>
+              <h4 className="font-bold text-white mb-4">PromotionX</h4>
+              <p className="text-gray-400 text-sm">Telegram automation for the modern world.</p>
+            </div>
+            <div>
+              <h4 className="font-bold text-white mb-4">Legal</h4>
+              <ul className="space-y-2">
+                <li><Link href="/privacy" className="text-gray-400 hover:text-cyan-400 transition-colors text-sm">Privacy Policy</Link></li>
+                <li><Link href="/terms" className="text-gray-400 hover:text-cyan-400 transition-colors text-sm">Terms & Conditions</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold text-white mb-4">Support</h4>
+              <ul className="space-y-2">
+                <li>
+                  <a href="mailto:biswatechsolution@gmail.com" className="text-gray-400 hover:text-cyan-400 transition-colors text-sm flex items-center gap-2">
+                    <Mail className="w-4 h-4" />
+                    Contact Us
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold text-white mb-4">Try Demo</h4>
+              <a 
+                href="https://t.me/Alright_dear_bot" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white rounded-lg transition-all duration-300 text-sm font-semibold"
+                data-testid="button-telegram-demo"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.52 3.52a1.33 1.33 0 00-1.87 0l-17 17a1.33 1.33 0 001.88 1.88l17-17a1.33 1.33 0 000-1.88zM12 3C6.48 3 2 6.58 2 11c0 1.54.37 3 .99 4.29L3 20c0 .55.45 1 1 1h5.71c1.29.62 2.75.99 4.29.99 5.42 0 9-4.48 9-10S17.42 3 12 3z"/>
+                </svg>
+                Telegram Bot
+              </a>
+            </div>
+          </div>
+          <div className="border-t border-white/10 pt-8 text-center text-gray-500">
+            <p>&copy; 2025 PromotionX. All rights reserved.</p>
+          </div>
+        </div>
       </footer>
 
       <style>{`

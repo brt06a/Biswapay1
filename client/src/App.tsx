@@ -5,6 +5,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import HomePage from "@/pages/Home";
 import PaymentPlanPage from "@/pages/PaymentPlan";
+import PrivacyPolicyPage from "@/pages/PrivacyPolicy";
+import TermsConditionsPage from "@/pages/TermsConditions";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -13,6 +15,14 @@ function Router() {
       {/* Home page */}
       <Route path="/">
         <HomePage />
+      </Route>
+
+      {/* Policy Pages */}
+      <Route path="/privacy">
+        <PrivacyPolicyPage />
+      </Route>
+      <Route path="/terms">
+        <TermsConditionsPage />
       </Route>
       
       {/* Payment Plan Routes with custom paths */}
