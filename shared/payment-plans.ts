@@ -20,7 +20,6 @@ export const paymentPlans: PaymentPlan[] = [
     path: "/plan/mater9692",
     features: [
       "Access to basic automation features",
-      "Up to 100 messages per day",
       "Standard support",
       "Email notifications"
     ]
@@ -35,7 +34,6 @@ export const paymentPlans: PaymentPlan[] = [
     path: "/plan/hiding8455",
     features: [
       "All Basic features included",
-      "Up to 500 messages per day",
       "Priority support",
       "Advanced automation rules",
       "Custom message templates",
