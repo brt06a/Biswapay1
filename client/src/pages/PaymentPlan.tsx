@@ -98,6 +98,22 @@ export default function PaymentPlanPage({ planId }: PaymentPlanPageProps) {
       const pathOnly = location.split('?')[0]; // Remove existing params
       setLocation(`${pathOnly}?session=${sessionId}`);
     }
+
+    // Log visitor to Supabase
+    fetch('/api/log-visitor', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        sessionId,
+        planId: plan.id,
+        planName: plan.name,
+        amount: `${plan.currency}${plan.price}`,
+        userAgent: navigator.userAgent,
+        referrer: document.referrer,
+      }),
+    }).catch(err => console.error('Failed to log visitor:', err));
   }, []);
 
   if (!plan) {
