@@ -105,7 +105,14 @@ export default function PaymentPlanPage({ planId }: PaymentPlanPageProps) {
   }
 
   const upiString = generateUPIString(plan.price);
-  const handlePayment = () => { window.location.href = upiString; };
+  const handlePayment = () => {
+    // Open UPI app using deeplink
+    if (window.location.href !== upiString) {
+      setTimeout(() => {
+        window.location.href = upiString;
+      }, 100);
+    }
+  };
   
   const bgGradient = getGradientByTier(plan.tier);
   const buttonGradient = getButtonByTier(plan.tier);

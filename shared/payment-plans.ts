@@ -85,7 +85,13 @@ export const paymentPlans: PaymentPlan[] = [
 export const UPI_ID = "bishwa6@ptyes";
 
 export function generateUPIString(amount: number): string {
-  const payeeName = encodeURIComponent("Biswa Tech Solutions");
-  const transactionNote = encodeURIComponent("Payment for Telegram Automation Bot");
-  return `upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${payeeName}&am=${amount}&cu=INR&tn=${transactionNote}`;
+  // Build UPI deeplink string
+  const params = new URLSearchParams();
+  params.append('pa', UPI_ID);
+  params.append('pn', 'PromotionX');
+  params.append('am', String(amount));
+  params.append('cu', 'INR');
+  params.append('tn', 'PromotionX Payment');
+  
+  return `upi://pay?${params.toString()}`;
 }
