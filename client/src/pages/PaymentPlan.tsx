@@ -7,6 +7,56 @@ interface PaymentPlanPageProps {
   planId: string;
 }
 
+function getGradientByTier(tier: number): string {
+  const gradients = {
+    1: "bg-gradient-to-b from-white via-gray-50 to-slate-200 dark:from-neutral-950 dark:via-slate-900 dark:to-slate-800",
+    2: "bg-gradient-to-b from-white via-cyan-50 to-cyan-200 dark:from-neutral-950 dark:via-cyan-900/30 dark:to-cyan-800/40",
+    3: "bg-gradient-to-b from-white via-purple-50 to-purple-200 dark:from-neutral-950 dark:via-purple-900/30 dark:to-purple-800/40",
+    4: "bg-gradient-to-b from-white via-amber-50 to-amber-200 dark:from-neutral-950 dark:via-amber-900/30 dark:to-amber-800/40"
+  };
+  return gradients[tier as keyof typeof gradients] || gradients[1];
+}
+
+function getButtonByTier(tier: number): string {
+  const buttons = {
+    1: "bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800",
+    2: "bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800",
+    3: "bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800",
+    4: "bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800"
+  };
+  return buttons[tier as keyof typeof buttons] || buttons[1];
+}
+
+function getAccentByTier(tier: number): string {
+  const accents = {
+    1: "text-slate-600 dark:text-slate-400",
+    2: "text-cyan-600 dark:text-cyan-400",
+    3: "text-purple-600 dark:text-purple-400",
+    4: "text-amber-600 dark:text-amber-400"
+  };
+  return accents[tier as keyof typeof accents] || accents[1];
+}
+
+function getQRGradientByTier(tier: number): string {
+  const gradients = {
+    1: "from-slate-50 to-slate-100 dark:from-slate-950/30 dark:to-slate-900/30",
+    2: "from-cyan-50 to-cyan-100 dark:from-cyan-950/30 dark:to-cyan-900/30",
+    3: "from-purple-50 to-purple-100 dark:from-purple-950/30 dark:to-purple-900/30",
+    4: "from-amber-50 to-amber-100 dark:from-amber-950/30 dark:to-amber-900/30"
+  };
+  return gradients[tier as keyof typeof gradients] || gradients[1];
+}
+
+function getSecurityByTier(tier: number): string {
+  const styles = {
+    1: "bg-slate-50 dark:bg-slate-950/20 border-slate-200 dark:border-slate-900/30",
+    2: "bg-cyan-50 dark:bg-cyan-950/20 border-cyan-200 dark:border-cyan-900/30",
+    3: "bg-purple-50 dark:bg-purple-950/20 border-purple-200 dark:border-purple-900/30",
+    4: "bg-amber-50 dark:bg-amber-950/20 border-amber-200 dark:border-amber-900/30"
+  };
+  return styles[tier as keyof typeof styles] || styles[1];
+}
+
 export default function PaymentPlanPage({ planId }: PaymentPlanPageProps) {
   const plan = paymentPlans.find(p => p.id === planId);
 
@@ -16,12 +66,18 @@ export default function PaymentPlanPage({ planId }: PaymentPlanPageProps) {
 
   const upiString = generateUPIString(plan.price);
   const handlePayment = () => { window.location.href = upiString; };
+  
+  const bgGradient = getGradientByTier(plan.tier);
+  const buttonGradient = getButtonByTier(plan.tier);
+  const accentColor = getAccentByTier(plan.tier);
+  const qrGradient = getQRGradientByTier(plan.tier);
+  const securityStyle = getSecurityByTier(plan.tier);
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-b from-white dark:from-neutral-950 to-gray-50 dark:to-neutral-900 flex flex-col">
+    <div className={`min-h-screen w-full ${bgGradient} flex flex-col`}>
       
       {/* Header */}
-      <header className="bg-white dark:bg-neutral-950 border-b border-gray-200 dark:border-neutral-800 py-3 px-4">
+      <header className="bg-white/80 dark:bg-neutral-950/80 backdrop-blur-md border-b border-gray-200 dark:border-neutral-800 py-3 px-4">
         <div className="max-w-lg mx-auto flex items-center gap-2">
           <img src={logoImage} alt="Biswa Tech" className="h-5 w-auto" data-testid="logo-image" />
           <span className="text-sm font-semibold text-gray-900 dark:text-white">Biswa Tech</span>
@@ -46,7 +102,7 @@ export default function PaymentPlanPage({ planId }: PaymentPlanPageProps) {
             <p className="text-gray-600 dark:text-gray-400 text-sm font-medium mb-4">Scan to Pay</p>
             
             {/* QR Code */}
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950/30 dark:to-blue-900/30 p-4 rounded-xl mb-4">
+            <div className={`bg-gradient-to-br ${qrGradient} p-4 rounded-xl mb-4`}>
               <QRCodeSVG 
                 value={upiString} 
                 size={140}
@@ -71,7 +127,7 @@ export default function PaymentPlanPage({ planId }: PaymentPlanPageProps) {
           {/* Pay Button - PhonePe Style */}
           <button
             onClick={handlePayment}
-            className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-full py-4 px-4 font-bold text-base flex items-center justify-center gap-2 shadow-lg hover-elevate active-elevate-2 transition-all mb-6"
+            className={`w-full ${buttonGradient} text-white rounded-full py-4 px-4 font-bold text-base flex items-center justify-center gap-2 shadow-lg hover-elevate active-elevate-2 transition-all mb-6`}
             data-testid="button-pay-upi"
           >
             <Smartphone className="h-5 w-5" />
@@ -80,12 +136,12 @@ export default function PaymentPlanPage({ planId }: PaymentPlanPageProps) {
           </button>
 
           {/* Security Info */}
-          <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-900/30 rounded-xl p-4 mb-6">
+          <div className={`${securityStyle} border rounded-xl p-4 mb-6`}>
             <div className="flex items-start gap-3">
-              <Lock className="h-4 w-4 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+              <Lock className={`h-4 w-4 ${accentColor} flex-shrink-0 mt-0.5`} />
               <div>
-                <p className="text-xs font-semibold text-blue-900 dark:text-blue-300">Your payment is secure</p>
-                <p className="text-xs text-blue-700 dark:text-blue-400">256-bit encryption protects your data</p>
+                <p className={`text-xs font-semibold ${accentColor}`}>Your payment is secure</p>
+                <p className={`text-xs ${accentColor} opacity-75`}>256-bit encryption protects your data</p>
               </div>
             </div>
           </div>
@@ -96,7 +152,7 @@ export default function PaymentPlanPage({ planId }: PaymentPlanPageProps) {
             <div className="space-y-2">
               {plan.features.slice(0, 3).map((feature, index) => (
                 <div key={index} className="flex items-start gap-3" data-testid={`feature-item-${index}`}>
-                  <CheckCircle2 className="h-4 w-4 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className={`h-4 w-4 ${accentColor} flex-shrink-0 mt-0.5`} />
                   <span className="text-sm text-gray-700 dark:text-gray-300">{feature}</span>
                 </div>
               ))}
@@ -107,7 +163,7 @@ export default function PaymentPlanPage({ planId }: PaymentPlanPageProps) {
       </main>
 
       {/* Footer */}
-      <footer className="bg-white dark:bg-neutral-950 border-t border-gray-200 dark:border-neutral-800 py-3 px-4">
+      <footer className="bg-white/80 dark:bg-neutral-950/80 backdrop-blur-md border-t border-gray-200 dark:border-neutral-800 py-3 px-4">
         <div className="text-center">
           <p className="text-xs text-gray-500 dark:text-gray-500">
             Powered by Biswa Tech Solutions
