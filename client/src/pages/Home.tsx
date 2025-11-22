@@ -223,46 +223,138 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section id="pricing" className="relative py-32 px-4">
+      {/* Achievements Section */}
+      <section id="achievements" className="relative py-32 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
             <h2 className="text-6xl md:text-7xl font-black mb-6">
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 text-transparent bg-clip-text">Pricing</span> Plans
+              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 text-transparent bg-clip-text">Our Impact</span>
             </h2>
-            <p className="text-xl text-gray-400">Choose the perfect plan for your scale</p>
+            <p className="text-xl text-gray-400">Transforming businesses worldwide with intelligent automation</p>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { name: "Basic", price: "₹49", badge: "STARTER", color: "from-slate-600 to-slate-700" },
-              { name: "Pro", price: "₹99", badge: "POPULAR", color: "from-cyan-600 to-blue-600", popular: true },
-              { name: "Standard", price: "₹199", badge: "PROFESSIONAL", color: "from-purple-600 to-pink-600" },
-              { name: "Premium", price: "₹399", badge: "ENTERPRISE", color: "from-amber-600 to-orange-600" }
-            ].map((plan) => (
+              { number: "250M+", label: "Messages Delivered", icon: "✉️" },
+              { number: "50K+", label: "Active Users", icon: "👥" },
+              { number: "156", label: "Countries Served", icon: "🌍" },
+              { number: "99.9%", label: "Uptime Guarantee", icon: "⚡" }
+            ].map((stat, idx) => (
               <div
-                key={plan.name}
-                className={`relative group rounded-2xl overflow-hidden transition-all duration-500 ${
-                  plan.popular ? "lg:scale-105" : ""
-                }`}
+                key={idx}
+                className="relative group rounded-2xl overflow-hidden"
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${plan.color} opacity-20 group-hover:opacity-30 transition-opacity duration-500 blur`}></div>
-                <div className={`relative backdrop-blur-xl bg-white/5 border transition-all duration-500 p-8 h-full flex flex-col ${
-                  plan.popular ? "border-white/40 bg-white/10" : "border-white/10 hover:border-white/30"
-                }`}>
-                  {plan.popular && (
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full text-xs font-bold text-white">
-                      {plan.badge}
-                    </div>
-                  )}
-                  <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
-                  <div className="text-4xl font-black bg-gradient-to-r from-blue-400 to-cyan-400 text-transparent bg-clip-text mb-6">
-                    {plan.price}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-cyan-600 to-purple-600 opacity-20 group-hover:opacity-30 transition-opacity duration-500 blur"></div>
+                <div className="relative backdrop-blur-xl bg-white/5 border border-white/10 hover:border-white/30 rounded-2xl p-8 transition-all duration-500 text-center h-full flex flex-col items-center justify-center group-hover:-translate-y-2">
+                  <div className="text-5xl mb-4 group-hover:scale-125 transition-transform duration-300">{stat.icon}</div>
+                  <div className="text-4xl font-black bg-gradient-to-r from-blue-400 to-cyan-400 text-transparent bg-clip-text mb-2">
+                    {stat.number}
                   </div>
-                  <p className="text-gray-400 mb-8 flex-1">Perfect for your needs</p>
-                  <button className="w-full py-3 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-bold rounded-xl transition-all duration-300 transform hover:-translate-y-0.5">
-                    Get Started
-                  </button>
+                  <p className="text-gray-400 group-hover:text-gray-300 transition-colors">{stat.label}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-20 grid md:grid-cols-3 gap-8">
+            {[
+              { title: "Industry Leading", desc: "Recognized as the fastest Telegram automation platform" },
+              { title: "Award Winning", desc: "Multiple innovation awards and industry recognitions" },
+              { title: "Trusted by Brands", desc: "Powering global brands and enterprises" }
+            ].map((achievement, idx) => (
+              <div
+                key={idx}
+                className="relative group rounded-2xl overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-pink-600 opacity-10 group-hover:opacity-20 transition-opacity duration-500"></div>
+                <div className="relative backdrop-blur-xl bg-white/5 border border-white/10 hover:border-white/30 rounded-2xl p-8 transition-all duration-500 group-hover:-translate-y-2">
+                  <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <Rocket className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-cyan-400 transition-all duration-300">{achievement.title}</h3>
+                  <p className="text-gray-400 group-hover:text-gray-300 transition-colors">{achievement.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* User Feedback Section */}
+      <section id="feedback" className="relative py-32 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="text-6xl md:text-7xl font-black mb-6">
+              What Our <span className="bg-gradient-to-r from-blue-400 to-cyan-400 text-transparent bg-clip-text">Users Say</span>
+            </h2>
+            <p className="text-xl text-gray-400">Join thousands of satisfied customers automating their success</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Sarah Johnson",
+                role: "Marketing Director",
+                company: "TechStart Inc",
+                feedback: "PromotionX transformed our outreach strategy. We've increased engagement by 300% in just 3 months!",
+                rating: 5
+              },
+              {
+                name: "Raj Patel",
+                role: "Founder",
+                company: "Digital Ventures",
+                feedback: "Best investment we made. The automation saved us countless hours and scaled our operations exponentially.",
+                rating: 5
+              },
+              {
+                name: "Emma Chen",
+                role: "Growth Manager",
+                company: "Global Solutions",
+                feedback: "Intuitive, powerful, and reliable. The support team is responsive and truly cares about your success.",
+                rating: 5
+              },
+              {
+                name: "Marcus Williams",
+                role: "Business Owner",
+                company: "Premium Brands",
+                feedback: "Switched from competitors and never looked back. PromotionX's features are unmatched in the industry.",
+                rating: 5
+              },
+              {
+                name: "Priya Sharma",
+                role: "Operations Lead",
+                company: "StartupHub",
+                feedback: "The analytics dashboard gives us insights we never had before. Data-driven decisions made easy.",
+                rating: 5
+              },
+              {
+                name: "David Martinez",
+                role: "E-commerce Manager",
+                company: "Online Retail Co",
+                feedback: "ROI was immediate. We saw conversions increase within the first week of using PromotionX.",
+                rating: 5
+              }
+            ].map((feedback, idx) => (
+              <div
+                key={idx}
+                className="relative group rounded-2xl overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-green-600 to-emerald-600 opacity-10 group-hover:opacity-20 transition-opacity duration-500"></div>
+                <div className="relative backdrop-blur-xl bg-white/5 border border-white/10 hover:border-white/30 rounded-2xl p-8 transition-all duration-500 group-hover:-translate-y-2">
+                  <div className="flex items-center justify-between mb-4">
+                    <div>
+                      <h3 className="text-lg font-bold text-white">{feedback.name}</h3>
+                      <p className="text-sm text-gray-400">{feedback.role}</p>
+                      <p className="text-xs text-gray-500">{feedback.company}</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(feedback.rating)].map((_, i) => (
+                      <span key={i} className="text-yellow-400">★</span>
+                    ))}
+                  </div>
+                  <p className="text-gray-300 leading-relaxed italic">"{feedback.feedback}"</p>
+                  <div className="mt-6 h-1 bg-gradient-to-r from-blue-600 to-cyan-600 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
                 </div>
               </div>
             ))}
